@@ -1,0 +1,32 @@
+<Window x:Class="PhotoFrame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PhotoFrame" Height="300" Width="420"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+      <Button Name="AddButton" Click="AddButton_Click" Width="100" Margin="0,0,10,0">Add Image</Button>
+      <Button Name="CloseAllButton" Click="CloseAllButton_Click" Width="100">Close All</Button>
+    </StackPanel>
+
+    <ListBox Name="FramesList" Grid.Row="1" Height="170" Margin="0,0,0,10">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal" Margin="0,4">
+            <TextBlock Text="{Binding DisplayName}" Width="220" VerticalAlignment="Center"/>
+            <Button Content="Show" Click="ShowFrame_Click" Tag="{Binding Id}" Width="60" Margin="6,0"/>
+            <Button Content="Close" Click="CloseFrame_Click" Tag="{Binding Id}" Width="60"/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <TextBlock Grid.Row="2" Text="Max 3 frames. Frames are click-through on desktop." FontSize="12" Foreground="Gray"/>
+  </Grid>
+</Window>
