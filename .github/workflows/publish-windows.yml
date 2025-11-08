@@ -23,7 +23,7 @@ jobs:
       - name: Restore
         run: dotnet restore
 
-            - name: Publish self-contained single-file EXE
+      - name: Publish self-contained single-file EXE
         run: dotnet publish -c Release -r win-x64 --self-contained true ./PhotoFrame.csproj /p:PublishSingleFile=true /p:PublishTrimmed=false -o ./publish
 
 
