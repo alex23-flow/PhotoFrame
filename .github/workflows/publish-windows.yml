@@ -10,15 +10,15 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        runtime: [win-x64]   # change/add win-x86 if you need 32-bit
+        runtime: [win-x64]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'   # or '7.0.x' / '6.0.x' depending on your project target
+          dotnet-version: '8.0.x'
 
       - name: Restore
         run: dotnet restore
@@ -27,11 +27,7 @@ jobs:
         run: |
           dotnet publish -c Release -r ${{ matrix.runtime }} --self-contained true \
             /p:PublishSingleFile=true /p:PublishTrimmed=false \
-            /p:IncludeNativeLibrariesForSelfExtract=true \
             -o ./publish
-
-      - name: List publish output
-        run: dir ./publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
